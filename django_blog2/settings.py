@@ -52,10 +52,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_blog2.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+            BASE_DIR / 'blog/templates',
+            BASE_DIR / 'django_blog2' / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,7 +72,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'django_blog2.wsgi.application'
 
 # Database
@@ -114,11 +118,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    'statics',
+    BASE_DIR / 'statics',
 ]
+STATIC_ROOT = BASE_DIR / 'static'
 
+MEDIA_ROOT = 'files'
 MEDIA_URL = '/files/'
-MEDIA_ROOT = BASE_DIR / 'files'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
