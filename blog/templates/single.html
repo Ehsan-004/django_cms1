@@ -1,0 +1,71 @@
+{% extends 'pages_template.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+
+{% block page_title %}
+    {{ post.title }}
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="page-content single_content">
+                <div class="col-md-9">
+                    <div class="content_bx">
+                        <img src="{{ post.post_image.url }}" alt="" style="width: 499px; height: auto">
+                        <div class="meta">
+                            <span><i class="fa fa-clock-o"></i>{{ post.create_date }}</span>
+{#                            <span><i class="fa fa-comment-o"></i> 15 نظر</span>#}
+                            <span><i class="fa fa-archive"></i><a href="#">{{ post.sub_category.category.name }}</a>, <a href="#">{{ post.sub_category.name }}</a></span>
+                        </div>
+                        <h1>{{ post.title }}</h1><hr>
+                        <div class="p_text">
+                            {{ post.content.html|safe }}
+                        </div>
+{#                        <div class="post_tags">#}
+{#                            {% for tag in post.tags %}#}
+{#                                ##}
+{#                                <a href="#">{{ tag }}</a>#}
+{#                                {% empty %}#}
+{#                                 #}
+{#                            {% endfor %}#}
+{#                        </div>#}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="search_box">
+                        <form>
+                            <input type="text" name="" placeholder="متن را وارد کنید ..">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="side_bx">
+                        <span class="title">آخرین مطالب</span>
+                        <ul>
+                            {% for article in recent_articles %}
+                            <li><a href="#">{{ article.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="side_bx">
+                        <span class="title">به چه مطالبی علاقمندید</span>
+                        <ul>
+                            {% for category in categories %}
+                            <li><a href="#">{{ category }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

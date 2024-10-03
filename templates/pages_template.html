@@ -15,8 +15,8 @@
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-{#    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>#}
-{#    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>#}
+    {#    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>#}
+    {#    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>#}
 </head>
 <body>
 
@@ -31,19 +31,6 @@
                         <li><a href="#">مقالات</a></li>
                         <li><a href="{% url 'contact' %}">تماس با ما</a></li>
                         <li><a href="{% url 'about' %}">درباره ما</a>
-{#                            <ul>#}
-{#                                <li><a href="#">خانه</a></li>#}
-{#                                <li><a href="#">اخبار</a></li>#}
-{#                                <li><a href="#">تماس با ما</a>#}
-{#                                    <ul>#}
-{#                                        <li><a hre  f="#">خانه</a></li>#}
-{#                                        <li><a href="#">اخبار</a></li>#}
-{#                                        <li><a href="#">تماس با ما</a></li>#}
-{#                                        <li><a href="#">درباره ما</a></li>#}
-{#                                    </ul>#}
-{#                                </li>#}
-{#                                <li><a href="#">درباره ما</a></li>#}
-{#                            </ul>#}
                         </li>
                     </ul>
                 </div>
@@ -56,20 +43,21 @@
     </div>
 </div>
 
-
-<div class="page-baner">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+{% block banner %}
+    <div class="page-baner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
                 <span>
                     {% block page_title %}
 
                     {% endblock %}
                 </span>
+                </div>
             </div>
         </div>
     </div>
-</div>
+{% endblock %}
 
 {% block content %}
     <!--  content of page goes here  -->

@@ -28,23 +28,9 @@
                     <div class="menu-items">
                         <ul>
                             <li><a href="{% url 'blog:home' %}">خانه</a></li>
-                            <li><a href="#">مقالات</a></li>
+                            <li><a href="#">اخبار</a></li>
                             <li><a href="{% url 'contact' %}">تماس با ما</a></li>
-                            <li><a href="{% url 'about' %}">درباره ما</a>
-{#                                <ul>#}
-{#                                    <li><a href="#">خانه</a></li>#}
-{#                                    <li><a href="#">اخبار</a></li>#}
-{#                                    <li><a href="#">تماس با ما</a>#}
-{#                                        <ul>#}
-{#                                            <li><a href="#">خانه</a></li>#}
-{#                                            <li><a href="#">اخبار</a></li>#}
-{#                                            <li><a href="#">تماس با ما</a></li>#}
-{#                                            <li><a href="#">درباره ما</a></li>#}
-{#                                        </ul>#}
-{#                                    </li>#}
-{#                                    <li><a href="#">درباره ما</a></li>#}
-{#                                </ul>#}
-                            </li>
+                            <li><a href="{% url 'about' %}">درباره ما</a></li>
                         </ul>
                     </div>
                 </div>
@@ -106,7 +92,7 @@
         <!--  indexed articles  -->
         {% for article in indexed_articles %}
 
-            {% if forloop.counter0|divisibleby:2 %}
+            {% if forloop.counter0|divisibleby:2 %} {# articles would be arranged in left and right #}
             <!-- left article -->
             <div class="row row1">
                 <div class="col-md-6">
@@ -128,7 +114,7 @@
                             {{ article.summary }}
                         </p>
                         <div class="text-left">
-                            <a href="#" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a>
+                            <a href="{% url 'blog:post' article.id %}" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a>
                         </div>
                     </div>
                 </div>
@@ -163,7 +149,7 @@
                                 </div>
                                 <p>{{ article.summary }}</p>
                                 <div class="text-left">
-                                    <a href="#" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a>
+                                    <a href="{% url 'blog:post' article.id %}" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +181,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="desc">
-                                    <h5>{{ article.title }}</h5>
+                                    <h5><a href="{% url 'blog:post' article.id %}">{{ article.title }}</a></h5>
                                     <p>{{ article.summary }}</p> <!-- TODO: it must be shorter -->
                                     <span> <i class="fa fa-calendar-o"></i>{{ article.create_date }}</span>
                                 </div>
@@ -219,7 +205,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="desc">
-                                    <h5>{{ article.title }}</h5>
+                                    <h5><a href="{% url 'blog:post' article.id %}">{{ article.title }}</a></h5>
                                     <p>{{ article.summary }}</p>
                                     <span><i class="fa fa-calendar-o"></i>{{ article.create_date }}</span>
                                 </div>
