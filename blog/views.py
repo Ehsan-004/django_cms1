@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 from blog.models import Post, Tag, Category, SubCategory
 
 
@@ -53,17 +53,28 @@ class IndexView(View):
         return render(request, self.template_name, context=context)
 
 
+
+class PostsView(ListView):
+    model = Post
+    template_name = 'posts.html'
+    context_object_name = 'posts'
+    paginate_by = 1
+
+    def get_object(self, queryset=None):
+        return self.model.objects.all()
+
+
 class PostDetailView(DetailView):
     model = Post
     template_name = 'single.html'
     context_object_name = 'post'
-
 
     def get_object(self, queryset=None):
         pid = int(self.kwargs.get('id'))
         if pid:
             p_object = Post.objects.get(pk=pid)
             return p_object
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         recent_articles = []
