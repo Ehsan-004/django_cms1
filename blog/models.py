@@ -22,6 +22,9 @@ class SubCategory(models.Model):
         verbose_name = 'Sub-category'
         db_table = 'sub_categories'
 
+    def __str__(self):
+        return self.name
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)

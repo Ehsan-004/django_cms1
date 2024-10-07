@@ -23,6 +23,7 @@ class IndexView(View):
                 "title": article.title,
                 "create_date": article.create_date,
                 # "comment_count": Comment.objects.filter(article=article).count(),
+                "view_count": article.view_count,
                 "summary": article.summary,
                 "picture": article.post_image.url,
             })
@@ -32,6 +33,7 @@ class IndexView(View):
                 'id': article.id,
                 "title": article.title,
                 "create_date": article.create_date,
+                "view_count": article.view_count,
                 "summary": article.summary,
                 "picture": article.post_image.url,
             })
@@ -41,6 +43,7 @@ class IndexView(View):
                 'id': article.id,
                 "title": article.title,
                 "create_date": article.create_date,
+                "view_count": article.view_count,
                 "summary": article.summary,
                 "picture": article.post_image.url,
             })
@@ -58,7 +61,7 @@ class PostsView(ListView):
     model = Post
     template_name = 'posts.html'
     context_object_name = 'posts'
-    paginate_by = 1
+    # paginate_by = 1
 
     def get_object(self, queryset=None):
         return self.model.objects.all()
@@ -73,6 +76,8 @@ class PostDetailView(DetailView):
         pid = int(self.kwargs.get('id'))
         if pid:
             p_object = Post.objects.get(pk=pid)
+            p_object.view_count += 1
+            p_object.save()
             return p_object
 
     def get_context_data(self, **kwargs):

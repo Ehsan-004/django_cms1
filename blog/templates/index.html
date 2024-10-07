@@ -7,9 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        {% block title %}
-
-        {% endblock %}
+        وبلاگ
     </title>
 
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
@@ -93,71 +91,55 @@
         {% for article in indexed_articles %}
 
             {% if forloop.counter0|divisibleby:2 %} {# articles would be arranged in left and right #}
-            <!-- left article -->
-            <div class="row row1">
-                <div class="col-md-6">
-                    <div class="desc">
-                        <h4>
-                            {{ article.title }}
-                        </h4>
-                        <div class="meta">
-                            <span>
-                                <i class="fa fa-calendar-o"></i>
-                                {{ article.create_date }}
-                            </span>
-                            <span>
-                                <i class="fa fa-comment-o"></i>
-                                {{ article.comment_count }} نظر
-                            </span>
-                        </div>
-                        <p>
-                            {{ article.summary }}
-                        </p>
-                        <div class="text-left">
-                            <a href="{% url 'blog:post' article.id %}" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a>
+                <!-- left article -->
+                <div class="row row1">
+                    <div class="col-md-6">
+                        <div class="desc">
+                            <h4>
+                                {{ article.title }}
+                            </h4>
+                            <div class="meta">
+                                <span>{{ article.view_count }} بازدید</span>
+                                <span> - </span>
+                                <span><i class="fa fa-calendar-o"></i>{{ article.create_date|date }}</span>
+                            </div>
+                            <p>{{ article.summary }}</p>
+                            <div class="text-left"><a href="{% url 'blog:post' article.id %}" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a></div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="pic">
-                        <img src="{{ article.picture }}" alt="تصویر پست" style="width: 499px; height: 280px; object-fit: cover">
+                    <div class="col-md-6">
+                        <div class="pic">
+                            <img src="{{ article.picture }}" alt="تصویر پست" style="width: 499px; height: 280px; object-fit: cover;">
+                        </div>
                     </div>
                 </div>
             {% else %}
-
                 <!-- end of left article -->
-
                 <!-- right article -->
-                    <div class="row row2">
-                        <div class="col-md-6">
-                            <div class="pic">
-                                <img src="{{ article.picture }}" alt="" style="width: 499px; height: 280px; object-fit: cover">
-                            </div>
+                <div class="row row2">
+                    <div class="col-md-6">
+                        <div class="pic">
+                            <img src="{{ article.picture }}" alt="" style="width: 499px; height: 280px; object-fit: cover;">
                         </div>
-                        <div class="col-md-6">
-                            <div class="desc">
-                                <h4>{{ article.title }}</h4>
-                                <div class="meta">
-                            <span>
-                                <i class="fa fa-calendar-o"></i>
-                                {{ article.create_date }}
-                            </span>
-                                    <span>
-                                <i class="fa fa-comment-o"></i>
-                                {{ article.comment_count }} نظر
-                            </span>
-                                </div>
-                                <p>{{ article.summary }}</p>
-                                <div class="text-left">
-                                    <a href="{% url 'blog:post' article.id %}" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a>
-                                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="desc">
+                            <h4>{{ article.title }}</h4>
+                            <div class="meta">
+                                <span>{{ article.view_count }} بازدید</span>
+                                <span> - </span>
+                                <span><i class="fa fa-calendar-o"></i>{{ article.create_date|date }}</span>
+                            </div>
+                            <p>{{ article.summary }}</p>
+                            <div class="text-left">
+                                <a href="{% url 'blog:post' article.id %}" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a>
                             </div>
                         </div>
                     </div>
+                </div>
                 <!-- end of right article -->
             {% endif %}
 
-            </div>
         {% endfor %}
     </div>
 </div>
@@ -183,7 +165,9 @@
                                 <div class="desc">
                                     <h5><a href="{% url 'blog:post' article.id %}">{{ article.title }}</a></h5>
                                     <p>{{ article.summary }}</p> <!-- TODO: it must be shorter -->
-                                    <span> <i class="fa fa-calendar-o"></i>{{ article.create_date }}</span>
+                                    <span>{{ article.view_count }} بازدید</span>
+                                    <span> - </span>
+                                    <span> <i class="fa fa-calendar-o"></i>{{ article.create_date|date }}</span>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +191,9 @@
                                 <div class="desc">
                                     <h5><a href="{% url 'blog:post' article.id %}">{{ article.title }}</a></h5>
                                     <p>{{ article.summary }}</p>
-                                    <span><i class="fa fa-calendar-o"></i>{{ article.create_date }}</span>
+                                    <span>{{ article.view_count }} بازدید</span>
+                                    <span> - </span>
+                                    <span><i class="fa fa-calendar-o"></i>{{ article.create_date|date }}</span>
                                 </div>
                             </div>
                         </div>

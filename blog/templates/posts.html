@@ -24,7 +24,9 @@
                                 <div class="desc">
                                     <h4>{{ post.title }}</h4>
                                     <div class="meta">
-                                        <span><i class="fa fa-calendar-o"></i>{{ post.create_date }}</span>
+                                        <span>{{ post.view_count }} بازدید</span>
+                                        <span> - </span>
+                                        <span><i class="fa fa-calendar-o"></i>{{ post.create_date|date }}</span>
                                         {#                                <span><i class="fa fa-comment-o"></i> 10 نظر</span>#}
                                     </div>
                                     <p>{{ post.summary }}</p>
@@ -50,7 +52,9 @@
                                 <div class="desc">
                                     <h4>{{ post.title }}</h4>
                                     <div class="meta">
-                                        <span><i class="fa fa-calendar-o"></i>{{ post.create_date }}</span>
+                                        <span>{{ post.view_count }} بازدید</span>
+                                        <span> - </span>
+                                        <span><i class="fa fa-calendar-o"></i>{{ post.create_date|date }}</span>
                                         {#                                <span><i class="fa fa-comment-o"></i> 10 نظر</span>#}
                                     </div>
                                     <p>{{ post.summary }}</p>
@@ -78,9 +82,9 @@
 
 
                                 <li class="page-item"><a class="page-link">{{ page_obj.number }}</a></li>
-{#                                <li class="page-item"><a class="page-link" href="#">1</a></li>#}
-{#                                <li class="page-item"><a class="page-link" href="#">2</a></li>#}
-{#                                <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+                                {#                                <li class="page-item"><a class="page-link" href="#">1</a></li>#}
+                                {#                                <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+                                {#                                <li class="page-item"><a class="page-link" href="#">3</a></li>#}
 
                                 {% if page_obj.has_next %}
                                     <li class="page-item">
