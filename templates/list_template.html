@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block title %}
-    همه مقالات
+    {{ title }}
 {% endblock %}
 
 
 {% block page_title %}
-    همه مقالات
+    {{ title }}
 {% endblock %}
 
 
@@ -15,14 +15,15 @@
     <div class="container">
         <div class="row">
             <div class="page-content index-blog">
-                <span class="page_title"><i class="fa fa-angle-left"></i>همه مقالات</span>
 
-                {% for post in posts %}
-                    {% if forloop.counter0|divisibleby:2 %}
+                <span class="page_title"> <a href="{% url 'blog:posts' %}">خانه</a> <i class="fa fa-angle-left"></i> <a href="{% url 'blog:posts' %}">مقالات</a> <i class="fa fa-angle-left"></i> {{ address }}</span>
+
+                {% for post in items %}
+{#                    {% if forloop.counter0|divisibleby:2 %}#}
                         <div class="row row1">
                             <div class="col-md-6">
                                 <div class="desc">
-                                    <h4>{{ post.title }}</h4>
+                                    <a href="{% url 'blog:post' post.id %}"><h4>{{ post.title }}</h4></a>
                                     <div class="meta">
                                         <span>{{ post.view_count }} بازدید</span>
                                         <span> - </span>
@@ -41,30 +42,33 @@
                                 </div>
                             </div>
                         </div>
-                    {% else %}
-                        <div class="row row2">
-                            <div class="col-md-6">
-                                <div class="pic">
-                                    <img src="{{ post.post_image.url }}" alt="تصویر پست" style="width: 499px; height: 280px; object-fit: cover">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="desc">
-                                    <h4>{{ post.title }}</h4>
-                                    <div class="meta">
-                                        <span>{{ post.view_count }} بازدید</span>
-                                        <span> - </span>
-                                        <span><i class="fa fa-calendar-o"></i>{{ post.create_date|date }}</span>
+                    <br>
+{#                    {% else %}#}
+
+{#                        <div class="row row2">#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="pic">#}
+{#                                    <img src="{{ post.post_image.url }}" alt="تصویر پست" style="width: 499px; height: 280px; object-fit: cover">#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="desc">#}
+{#                                    <h4>{{ post.title }}</h4>#}
+{#                                    <div class="meta">#}
+{#                                        <span>{{ post.view_count }} بازدید</span>#}
+{#                                        <span> - </span>#}
+{#                                        <span><i class="fa fa-calendar-o"></i>{{ post.create_date|date }}</span>#}
                                         {#                                <span><i class="fa fa-comment-o"></i> 10 نظر</span>#}
-                                    </div>
-                                    <p>{{ post.summary }}</p>
-                                    <div class="text-left">
-                                        <a href="{% url 'blog:post' post.id %}" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
+{#                                    </div>#}
+{#                                    <p>{{ post.summary }}</p>#}
+{#                                    <div class="text-left">#}
+{#                                        <a href="{% url 'blog:post' post.id %}" class="site-btn">ادامه مطلب <i class="fa fa-angle-left"></i></a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+
+{#                    {% endif %}#}
                 {% endfor %}
                 <div class="col-md-12 text-center">
                     <div class="pagination-box">

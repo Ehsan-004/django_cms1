@@ -1,10 +1,13 @@
 from django.db import models
 from django.utils.timezone import now
 from django_quill.fields import QuillField
-from user.models import Profile
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    description = models.TextField(default='توضیح خلاصه دسته بندی')
+    image = models.ImageField(upload_to='categories', default='categories/default.jpg')
+
     class Meta:
         verbose_name_plural = 'Categories'
         verbose_name = 'Category'
@@ -16,7 +19,10 @@ class Category(models.Model):
 
 class SubCategory(models.Model):
     name = models.CharField(max_length=100)
+    description = models.TextField(default='توضیح خلاصه زیر دسته بندی')
+    image = models.ImageField(upload_to='subcategories', default='subcategories/default.jpg')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
     class Meta:
         verbose_name_plural = 'Sub-categories'
         verbose_name = 'Sub-category'
@@ -43,11 +49,10 @@ class Post(models.Model):
     post_image = models.ImageField(upload_to="post_images", default='default.jpg')
     content = QuillField()
     summary = models.TextField(max_length=500, default="خلاصه پست")
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     create_date = models.DateTimeField(default=now)
     view_count = models.IntegerField(default=0)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
-    tags = models.ManyToManyField(Tag, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
     indexed = models.BooleanField(default=False)
 
     class Meta:
@@ -57,3 +62,4 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+

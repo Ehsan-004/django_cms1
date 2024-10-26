@@ -3,7 +3,7 @@ from .models import Post, Tag, Category, SubCategory
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'create_date', 'sub_category')
+    list_display = ('title', 'create_date', 'sub_category')
 
 
 class TagAdmin(admin.ModelAdmin):

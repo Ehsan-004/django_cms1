@@ -26,7 +26,13 @@
                     <div class="menu-items">
                         <ul>
                             <li><a href="{% url 'blog:home' %}">خانه</a></li>
-                            <li><a href="{% url 'blog:posts' %}">مقالات</a></li>
+                            <li>
+                                <span>مقالات</span>
+                                <ul>
+                                    <li><a href="{% url 'blog:posts' %}">همه مقالات</a></li>
+                                    <li><a href="{% url 'blog:categories' %}">دسته بندی ها</a></li>
+                                </ul>
+                            </li>
                             <li><a href="{% url 'contact' %}">تماس با ما</a></li>
                             <li><a href="{% url 'about' %}">درباره ما</a></li>
                         </ul>
@@ -45,6 +51,7 @@
         </div>
     </div>
 </div>
+<!--
 <div class="services">
     <div class="container">
         <div class="row">
@@ -82,8 +89,8 @@
             </div>
         </div>
     </div>
-</div>
-
+</div> 
+-->
 
 <div class="index-blog">
     <div class="container">
@@ -95,9 +102,7 @@
                 <div class="row row1">
                     <div class="col-md-6">
                         <div class="desc">
-                            <h4>
-                                {{ article.title }}
-                            </h4>
+                            <a href="{% url 'blog:post' article.id %}"><h4>{{ article.title }}</h4></a>
                             <div class="meta">
                                 <span>{{ article.view_count }} بازدید</span>
                                 <span> - </span>

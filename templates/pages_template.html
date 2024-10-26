@@ -28,10 +28,16 @@
                 <div class="menu-items">
                     <ul>
                         <li><a href="{% url 'blog:home' %}">خانه</a></li>
-                        <li><a href="{% url 'blog:posts' %}">مقالات</a></li>
-                        <li><a href="{% url 'contact' %}">تماس با ما</a></li>
-                        <li><a href="{% url 'about' %}">درباره ما</a>
+                        <li>
+                            <span>مقالات</span>
+                            <ul>
+                                <li><a href="{% url 'blog:posts' %}">همه مقالات</a></li>
+                                <li><a href="{% url 'blog:categories' %}">دسته بندی ها</a></li>
+                            </ul>
+
                         </li>
+                        <li><a href="{% url 'contact' %}">تماس با ما</a></li>
+                        <li><a href="{% url 'about' %}">درباره ما</a></li>
                     </ul>
                 </div>
             </div>
