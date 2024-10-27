@@ -23,7 +23,7 @@
                         <div class="meta">
                             <span><i class="fa fa-clock-o"></i>{{ post.create_date }}</span>
 {#                            <span><i class="fa fa-comment-o"></i> 15 نظر</span>#}
-                            <span><i class="fa fa-archive"></i><a href="#">{{ post.sub_category.category.name }}</a>, <a href="#">{{ post.sub_category.name }}</a></span>
+                            <span><i class="fa fa-archive"></i><a href="{% url 'blog:category_posts' post.sub_category.category_id %}">{{ post.sub_category.category.name }}</a>, {{ post.sub_category.name }}</span>
                         </div>
                         <h1>{{ post.title }}</h1><hr>
                         <div class="p_text">
@@ -33,7 +33,7 @@
                         <div class="post_tags">
                             {% for tag in tags_ %}
                                 #
-                                <a href="#">{{ tag }}</a>
+                                <a href="{% url 'blog:tag' tag.id %}">{{ tag }}</a>
                                 {% empty %}
 
                             {% endfor %}

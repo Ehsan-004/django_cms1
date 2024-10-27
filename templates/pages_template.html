@@ -79,11 +79,10 @@
                     <div class="footer-menu">
                         <span class="title">دسترسی سریع</span>
                         <ul>
-                            <li><a href="#">خانه</a></li>
-                            <li><a href="#">تماس با ما</a></li>
-                            <li><a href="#">حریم خصوصی</a></li>
-                            <li><a href="#">مجلات</a></li>
-                            <li><a href="#">بلاگ</a></li>
+                            <li><a href="{% url 'blog:home' %}">خانه</a></li>
+                            <li><a href="{% url 'contact' %}">تماس با ما</a></li>
+                            <li><a href="{% url 'about' %}">دربازه ما</a></li>
+                            <li><a href="{% url 'blog:posts' %}">مقالات</a></li>
                         </ul>
                     </div>
                 </div>
@@ -91,14 +90,14 @@
                     <div class="footer-menu">
                         <span class="title">دسنه بندی موضوعی</span>
                         <ul>
-                            <li><a href="#">وردپرس</a></li>
-                            <li><a href="#">اندروید</a></li>
-                            <li><a href="#">سیستم عامل</a></li>
-                            <li><a href="#">دانلود</a></li>
-                            <li><a href="#">موبایل</a></li>
+                            <li><a href="{% url 'blog:category_posts' 2 %}">ورزشی</a></li>
+                            <li><a href="{% url 'blog:category_posts' 1 %}">تکنولوژی</a></li>
+                            <li><a href="{% url 'blog:category_posts' 3 %}">علمی</a></li>
+                            <li><a href="{% url 'blog:category_posts' 4 %}">فرهنگی</a></li>
                         </ul>
                     </div>
                 </div>
+                <!--
                 <div class="col-md-4">
                     <div class="footer-menu">
                         <span class="title">دسترسی سریع</span>
@@ -111,6 +110,7 @@
                         </ul>
                     </div>
                 </div>
+                -->
             </div>
             <div class="col-md-5">
                 <div class="desc_footer footer-menu">

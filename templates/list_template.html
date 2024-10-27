@@ -16,7 +16,7 @@
         <div class="row">
             <div class="page-content index-blog">
 
-                <span class="page_title"> <a href="{% url 'blog:posts' %}">خانه</a> <i class="fa fa-angle-left"></i> <a href="{% url 'blog:posts' %}">مقالات</a> <i class="fa fa-angle-left"></i> {{ address }}</span>
+                <span class="page_title"> <a href="{% url 'blog:home' %}">خانه</a> <i class="fa fa-angle-left"></i> <a href="{% url 'blog:posts' %}">مقالات</a> <i class="fa fa-angle-left"></i> {{ address }}</span>
 
                 {% for post in items %}
 {#                    {% if forloop.counter0|divisibleby:2 %}#}

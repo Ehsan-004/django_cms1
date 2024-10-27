@@ -128,16 +128,20 @@ class CategoriesView(ListView):
         return context
 
 
-class CategoryPostsView(View):
-    model = Post
+class CategoryPostsView(ListView):
+    # model = Post
     template_name = 'list_template.html'
-    # context_object_name = 'items'
+    context_object_name = 'items'
 
-    def get(self, request, **kwargs):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['address'] = "مقالات در دسته بندی " + Category.objects.get(pk=int(self.kwargs['cat_id'])).name
+        context['title'] = context['address']
+        return context
+
+    def get_queryset(self):
         posts = []
-
-        sub_cats = SubCategory.objects.filter(category_id=int(kwargs['cat_id']))
-        context = {}
+        sub_cats = SubCategory.objects.filter(category_id=int(self.kwargs['cat_id']))
         for sub_cat in sub_cats:
             sub_cat_posts = Post.objects.filter(sub_category=sub_cat)
             for post in sub_cat_posts:
@@ -149,29 +153,19 @@ class CategoryPostsView(View):
                     'create_date': post.create_date,
                     'post_image': post.post_image,
                 })
-        context['items'] = posts
-        context['address'] = "مقالات در دسته بندی " + Category.objects.get(pk=int(kwargs['cat_id'])).name
-        return render(request, self.template_name, context)
+        return posts
 
 
-def category_posts_view(req, cat_id):
-    if req.method == 'GET':
-        posts = []
-        sub_cats = SubCategory.objects.filter(category_id=cat_id)
-        for sub_cat in sub_cats:
-            sub_cat_posts = Post.objects.filter(sub_category=sub_cat)
-            for post in sub_cat_posts:
-                posts.append({
-                    'id': post.id,
-                    'title': post.title,
-                    'view_count': post.view_count,
-                    'summary': post.summary,
-                    'create_date': post.create_date,
-                    'post_image ': post.post_image,
-                })
+class TagPostsView(ListView):
+    model = Tag
+    template_name = 'list_template.html'
+    context_object_name = 'items'
 
-        context = {
-            'items': posts,
-            'address': "مقالات در دسته بندی " + Category.objects.get(pk=cat_id).name
-        }
-        return render(req, 'list_template.html', context)
+    def get_queryset(self):
+        return Post.objects.filter(tags=Tag.objects.get(pk=int(self.kwargs['tag_id'])))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['address'] = "مقالات با تگ " + Tag.objects.get(id=int(self.kwargs.get('tag_id'))).name
+        context['title'] = context['address']
+        return context
