@@ -2,6 +2,9 @@
 
 A content management system, with Django.
 
+### 📌 Index page
+![Index Page](screenshot.png)
+
 To run:
 
 > - ```pip install -r requirements.txt```
