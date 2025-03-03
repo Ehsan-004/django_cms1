@@ -3,7 +3,7 @@
 A content management system, with Django.
 
 ### 📌 Index page
-![Index Page](screenshot.png)
+![Index Page](https://github.com/Ehsan-004/django_cms1/blob/main/Screenshot.png)
 
 To run:
 
